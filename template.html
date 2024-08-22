@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>$title$</title>
+		<style>
+			/* highlight-style を適用 */
+			/* 	→補足：$highlighting-css$ は、--highlight-style で指定したスタイルの CSS を出力するためのプレースホルダーである。 */
+			$highlighting-css$
+
+			/* gemini-style.css を読み込み */
+			@import url("https://takeru-server.github.io/markdown-html-converter-assets/css/gemini-style.css");	/* 解説：@import ルールを使って、gemini-style.css を読み込んでいる */
+		</style>
+	</head>
+	<body>
+		$body$
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+		<script src="https://takeru-server.github.io/markdown-html-converter-assets/js/copy-button.js"></script>
+		<script src="https://takeru-server.github.io/markdown-html-converter-assets/js/copy-button.js"></script>
+	</body>
+</html>
