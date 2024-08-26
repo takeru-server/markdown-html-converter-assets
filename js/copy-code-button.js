@@ -15,6 +15,5 @@ $(document).ready(function() {
 			}, 1500);
 		});
 		$(this).parent().prepend(copyButton););
-		$('<br>').insertAfter(copyButton);
 	});
 });
