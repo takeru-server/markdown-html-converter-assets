@@ -14,6 +14,9 @@ $(document).ready(function() {
 				copyButton.text('コピー');
 			}, 1500);
 		});
-		$(this).parent().prepend(copyButton);
+		$(this).parent().prepend(copyButton););
+		// コピーボタンの横にコードの１行目が記載されないように調整
+		const br = document.createElement('br');
+		codeBlock.parentNode.insertAfter(br, copyButton);
 	});
 });
