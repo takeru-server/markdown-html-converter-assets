@@ -12,7 +12,7 @@ file.Close();
 escapedHtml = escapeHtmlAndInsertScripts(htmlContent);
 
 // 結果を出力ファイルに書き込み
-outFile = fso.CreateTextFile(outputFile, true); 
+outFile = fso.CreateTextFile(outputFile, true);
 outFile.WriteLine(escapedHtml);
 outFile.Close();
 
