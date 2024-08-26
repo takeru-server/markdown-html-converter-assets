@@ -20,14 +20,14 @@ function escapeHtmlAndInsertScripts(html) {
   copyCodeButtonScript += '</scr' + 'ipt>';
 
   // </body>タグの直前に挿入
-  escapedHtml = html.replace('</body>', jqueryScript + copyButtonScript + copyCodeButtonScript + '</body>');
+  escapedHtml = html.replaceAll('</body>', jqueryScript + copyButtonScript + copyCodeButtonScript + '</body>');
 
-  // HTML エスケープ処理
-  escapedHtml = escapedHtml.replace(/&/g, '&');
-  escapedHtml = escapedHtml.replace(/</g, '<');
-  escapedHtml = escapedHtml.replace(/>/g, '>');
-  escapedHtml = escapedHtml.replace(/"/g, '"');
-  escapedHtml = escapedHtml.replace(/'/g, ''');
+  // HTML エスケープ処理 (replaceAll を使用)
+  escapedHtml = escapedHtml.replaceAll('&', '&');
+  escapedHtml = escapedHtml.replaceAll('<', '<');
+  escapedHtml = escapedHtml.replaceAll('>', '>');
+  escapedHtml = escapedHtml.replaceAll('"', '"');
+  escapedHtml = escapedHtml.replaceAll("'", ''');
 
   return escapedHtml;
 }
