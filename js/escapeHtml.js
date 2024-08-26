@@ -1,20 +1,14 @@
-// 引数からファイルパスを取得
-inputFile = WScript.Arguments(0);
-outputFile = WScript.Arguments(1);
-
-// 入力ファイルを読み込み
-fso = new ActiveXObject("Scripting.FileSystemObject");
-file = fso.OpenTextFile(inputFile, 1);
-htmlContent = file.ReadAll();
-file.Close();
+// 標準入力から HTML を読み込む
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var stdin = fso.GetStandardStream(0);
+var htmlContent = stdin.ReadAll();
 
 // HTML エスケープ処理と <script> タグの挿入
 escapedHtml = escapeHtmlAndInsertScripts(htmlContent);
 
-// 結果を出力ファイルに書き込み
-outFile = fso.CreateTextFile(outputFile, true);
-outFile.WriteLine(escapedHtml);
-outFile.Close();
+// 標準出力に結果を出力
+var stdout = fso.GetStandardStream(1);
+stdout.WriteLine(escapedHtml);
 
 function escapeHtmlAndInsertScripts(html) {
   // <script>タグを生成
@@ -25,7 +19,7 @@ function escapeHtmlAndInsertScripts(html) {
   // </body>タグの直前に挿入
   escapedHtml = html.replace('</body>', jqueryScript + copyButtonScript + copyCodeButtonScript + '</body>');
 
-  // HTML エスケープ処理 (修正済み)
+  // HTML エスケープ処理 
   escapedHtml = escapedHtml.replace(/&/g, '&')
                           .replace(/</g, '<')
                           .replace(/>/g, '>')
