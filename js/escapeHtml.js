@@ -1,28 +1,36 @@
-// bodyタグのコンテンツを取得
-var bodyContent = document.body.innerHTML;
+// 引数からファイルパスを取得
+var inputFile = WScript.Arguments(0);
+var outputFile = WScript.Arguments(1);
 
-// bodyタグの中身を空にする
-document.body.innerHTML = '';
+// 入力ファイルを読み込み
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var file = fso.OpenTextFile(inputFile, 1);
+var htmlContent = file.ReadAll();
+file.Close();
 
-// scriptタグを生成
-var jqueryScript = document.createElement('script');
-jqueryScript.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
-var copyButtonScript = document.createElement('script');
-copyButtonScript.src = 'https://takeru-server.github.io/markdown-html-converter-assets/js/copy-button.js';
-var copyCodeButtonScript = document.createElement('script');
-copyCodeButtonScript.src = 'https://takeru-server.github.io/markdown-html-converter-assets/js/copy-code-button.js';
+// HTML エスケープ処理と <script> タグの挿入
+var escapedHtml = escapeHtmlAndInsertScripts(htmlContent);
 
-// scriptタグをbodyタグに追加
-document.body.appendChild(jqueryScript);
-document.body.appendChild(copyButtonScript);
-document.body.appendChild(copyCodeButtonScript);
+// 結果を出力ファイルに書き込み
+var outFile = fso.CreateTextFile(outputFile, true);
+outFile.WriteLine(escapedHtml);
+outFile.Close();
 
-// エスケープ処理を行ったbodyタグのコンテンツを追加
-document.body.innerHTML += (function escapeHtml(unsafe) {
-    return unsafe
-           .replace(/&/g, '&')
-           .replace(/</g, '<')
-           .replace(/>/g, '>')
-           .replace(/"/g, '"')
-           .replace(/'/g, ''');
-})(bodyContent);
+function escapeHtmlAndInsertScripts(html) {
+  // <script>タグを生成
+  var jqueryScript = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><\/script>';
+  var copyButtonScript = '<script src="https://takeru-server.github.io/markdown-html-converter-assets/js/copy-button.js"><\/script>';
+  var copyCodeButtonScript = '<script src="https://takeru-server.github.io/markdown-html-converter-assets/js/copy-code-button.js"><\/script>';
+
+  // </body>タグの直前に挿入
+  var escapedHtml = html.replace('</body>', jqueryScript + copyButtonScript + copyCodeButtonScript + '</body>');
+
+  // HTML エスケープ処理
+  escapedHtml = escapedHtml.replace(/&/g, '&')
+                          .replace(/</g, '<')
+                          .replace(/>/g, '>')
+                          .replace(/"/g, '"')
+                          .replace(/'/g, ''');
+  
+  return escapedHtml;
+}
