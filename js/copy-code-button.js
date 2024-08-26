@@ -14,7 +14,7 @@ $(document).ready(function() {
 				copyButton.text('コピー');
 			}, 1500);
 		});
-		$(this).parent().prepend(copyButton));
+		$(this).parent().prepend(copyButton);
 		$('<br>').insertAfter(copyButton);
 	});
 });
