@@ -1,13 +1,13 @@
 // 標準入力から HTML を読み込む
-var fso = new ActiveXObject("Scripting.FileSystemObject");
-var stdin = fso.GetStandardStream(0);
-var htmlContent = stdin.ReadAll();
+fso = new ActiveXObject("Scripting.FileSystemObject");
+stdin = fso.GetStandardStream(0);
+htmlContent = stdin.ReadAll();
 
 // HTML エスケープ処理と <script> タグの挿入
 escapedHtml = escapeHtmlAndInsertScripts(htmlContent);
 
 // 標準出力に結果を出力
-var stdout = fso.GetStandardStream(1);
+stdout = fso.GetStandardStream(1);
 stdout.WriteLine(escapedHtml);
 
 function escapeHtmlAndInsertScripts(html) {
