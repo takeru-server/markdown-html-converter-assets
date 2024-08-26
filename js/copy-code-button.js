@@ -15,6 +15,6 @@ $(document).ready(function() {
 			}, 1500);
 		});
 		$(this).parent().prepend(copyButton);
-		$('<br>').insertAfter(copyButton);
+		$('<br>').insertAfter(copyButton);	// コピーボタンの横にコードの１行目が記載されないように調整	add_2024年8月23日
 	});
 });
