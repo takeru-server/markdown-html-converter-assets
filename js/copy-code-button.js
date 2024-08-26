@@ -1,7 +1,7 @@
 // コピーボタン作成	Ver.2.0から、変換バッチから独立して使用する
 $(document).ready(function() {
 	$('pre code.sourceCode').each(function() {
-		const copyButton = $('<button class="copy-button">コピー</button>');
+		const copyButton = $('<button class="copy-button">コピー</button><br>');
 		copyButton.on('click', function() {
 			const codeBlock = $(this).parent().find('code');
 			const tempTextArea = $('<textarea>');
