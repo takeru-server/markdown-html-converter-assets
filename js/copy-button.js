@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 		});
 
-		// コードブロックの前にボタンを追加
-		codeBlock.parentNode.insertBefore(copyButton, codeBlock);
 		// コピーボタンの横にコードの１行目が記載されないように調整
 		const br = document.createElement('br');
 		codeBlock.parentNode.insertBefore(br, codeBlock);
+		// コードブロックの前にボタンを追加
+		codeBlock.parentNode.insertBefore(copyButton, codeBlock);
 	});
 });
