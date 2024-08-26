@@ -15,6 +15,6 @@ $(document).ready(function() {
 			}, 1500);
 		});
 		$(this).parent().prepend(copyButton);
-		$('<br>').insertAfter(copyButton);	// コピーボタンの横にコードの１行目が記載されないように調整	add_2024年8月23日
+		$('<br>').insertAfter(copyButton);	// コピーボタンの横にコードの１行目が記載されないように調整	add_2024年8月23日	文法参考：https://qiita.com/nekoneko-wanwan/items/227ccad5f8cc449e91e9
 	});
 });
