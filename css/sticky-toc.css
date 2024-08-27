@@ -1,4 +1,7 @@
-/* スクロールしても目次が付いてくるようにする */
+/* 
+  スクロールしても目次が付いてくるようにする
+  参考：https://www.miso.blog/css-position-sticky/
+*/
 #TOC {
     position: -webkit-sticky; /* Safari */
     position: sticky;
