@@ -1,0 +1,15 @@
+pre > code.sourceCode > span {
+    line-height: 1.25;
+    text-indent: 0; /* 追加: インデントをリセット */
+}
+
+pre > code.sourceCode > span:empty {
+    height: 1.2em;
+    text-indent: 0; /* 追加: インデントをリセット */
+}
+
+pre.numberSource {
+    margin-left: 0; /* 追加: マージンをリセット */
+    padding-left: 0; /* 追加: パディングをリセット */
+    border-left: none; /* 追加: ボーダーをリセット */
+}
