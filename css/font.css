@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+body {
+	/* 
+		ヘッダーの「https://cdn.jsdelivr.net/gh/ryangrose/easy-pandoc-templates@948e28e5/css/elegant_bootstrap.css」でフォントを決定しているが、
+		半角数字と日本語を並べたときの相性が悪いため、先頭にフォント「Noto Sans Japaneze」を追加。
+		参考：https://www.sejuku.net/blog/71621
+	*/
+	font-family: 'Noto Sans JP', Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+
+}
