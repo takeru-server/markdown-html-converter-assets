@@ -1,0 +1,16 @@
+/* ネストされたリストの上部の余白を減らす */
+ol > li > ul {
+    margin-top: 0.2em; /* 数値を調整 */
+    margin-bottom: 0.8em; /* ネストされたリストの下の余白も調整 */
+}
+
+/* ネストされたリスト項目の上部の余白をなくす */
+ol > li > ul > li {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* 主要なリスト項目の下の余白を増やす */
+ol > li {
+    margin-bottom: 1em; /* 数値を調整 */
+}
