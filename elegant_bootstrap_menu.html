@@ -94,6 +94,10 @@ $endfor$
   <div class="container">
     <div class="row">
       $if(toc)$
+      <!-- ↓↓↓ ハンバーガーボタンを追加 ↓↓↓ -->
+      <button class="toc-toggle-button" type="button">☰</button>	<!-- Ver.5.0から追加 -->
+      <!-- ↑↑↑ ハンバーガーボタンを追加 ↑↑↑ -->
+      
       <div id="$idprefix$TOC" class="span3">
         <div class="well toc">
 
@@ -102,7 +106,9 @@ $endfor$
         </div>
       </div>
       $endif$
-      <div class="span$if(toc)$9$else$12$endif$">
+      <!-- ↓↓↓ メインコンテンツのdivに main-content クラスを追加 ↓↓↓ -->
+      <div class="span$if(toc)$9$else$12$endif$ main-content">	<!-- Ver.5.0から追加 -->
+      <!-- ↑↑↑ メインコンテンツのdivに main-content クラスを追加 ↑↑↑ -->
 
       $if(abstract)$
           <H1>$abstract-title$</H1>
@@ -128,6 +134,5 @@ $for(include-after)$
   $include-after$
 $endfor$
   <!-- add_end_2024年8月27日 -->
-
 </body>
 </html>
