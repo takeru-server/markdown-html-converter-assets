@@ -104,7 +104,7 @@ pre.numberSource {
 	}
 	/* ↓↓↓ span幅の上書きを追加 ↓↓↓ */
 	#TOC { /* span3 */
-		width: 240px; /* 例: (1040 - 20*2) / 12 * 3 = 250、テンプレートのspan3は220なので調整 */
+		width: 230px; /* 例: (1040 - 20*2) / 12 * 3 = 250、テンプレートのspan3は220なので調整 */
 		/* Bootstrapのtemplate.cssのspan3幅 (220px) を確認して合わせるか、計算する */
 	}
 	.main-content { /* span9 */
