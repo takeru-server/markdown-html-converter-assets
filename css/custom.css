@@ -148,7 +148,8 @@ pre.numberSource {
 		display: block; /* 表示する */
 		position: fixed; /* 画面左上に固定 */
 		top: 10px;
-		left: 10px;
+		/* left: 10px; */ /* ハンバーガーメニューを左上に表示したい場合はこちら */
+		right: 10px; /* ハンバーガーメニューを右上に表示したい場合はこちら */
 		z-index: 1050; /* 目次より手前に表示 */
 		padding: 5px 10px;
 		background-color: #f8f8f8; /* 背景色 */
