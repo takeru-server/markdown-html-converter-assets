@@ -91,6 +91,8 @@ pre.numberSource {
 } /* ← @media (min-width: 980px) の閉じ括弧 */
 
 
+/* custom.css の修正箇所 */
+
 /* --- ↓↓↓ PC表示時のコンテナ幅調整 (980px以上で適用) ↓↓↓ --- */
 /* デフォルトデスクトップ (980px - 1199px): コンテナ幅 1040px */
 @media (min-width: 980px) and (max-width: 1199px) {
@@ -98,11 +100,21 @@ pre.numberSource {
 	.navbar-static-top .container,
 	.navbar-fixed-top .container,
 	.navbar-fixed-bottom .container {
-		width: 1040px; /* ★希望の幅に調整 */
+		width: 1040px; /* コンテナ幅 */
 	}
-	/* 【注意】必要に応じてspan3, span9の幅も調整 */
-	/* #TOC { width: /* 計算値 */; } */
-	/* .main-content { width: /* 計算値 */; margin-left: 20px; } */
+	/* ↓↓↓ span幅の上書きを追加 ↓↓↓ */
+	#TOC { /* span3 */
+		width: 240px; /* 例: (1040 - 20*2) / 12 * 3 = 250、テンプレートのspan3は220なので調整 */
+		/* Bootstrapのtemplate.cssのspan3幅 (220px) を確認して合わせるか、計算する */
+	}
+	.main-content { /* span9 */
+		/* width: 780px; /* 例: 1040 - TOC幅(240) - margin(20) = 780 */
+		width: calc(1040px - 220px - 20px - 20px); /* コンテナ幅 - span3デフォルト幅 - span間のマージン - コンテナ左右padding分(概算) */
+		/* ↑ 正確な値は微調整が必要かも */
+		margin-left: 20px; /* Bootstrapデフォルト */
+		float: left; /* 念のため維持 */
+	}
+	/* ↑↑↑ span幅の上書きを追加 ↑↑↑ */
 }
 
 /* ラージデスクトップ (1200px以上): コンテナ幅をさらに広く */
@@ -111,14 +123,22 @@ pre.numberSource {
 	.navbar-static-top .container,
 	.navbar-fixed-top .container,
 	.navbar-fixed-bottom .container {
-			width: 1300px; /* ★希望の幅に調整 */
+			width: 1300px; /* コンテナ幅 */
 	}
-	/* 【注意】必要に応じてspan3, span9の幅も調整 */
-	/* #TOC { width: /* 計算値 */; } */
-	/* .main-content { width: /* 計算値 */; margin-left: 30px; } */
+	/* ↓↓↓ span幅の上書きを追加 ↓↓↓ */
+	#TOC { /* span3 */
+		width: 270px; /* Bootstrapのtemplate.cssのspan3幅 (270px) */
+	}
+	.main-content { /* span9 */
+		/* width: 970px; /* Bootstrapのtemplate.cssのspan9幅 (970px) */
+		width: calc(1300px - 270px - 30px - 30px); /* コンテナ幅 - span3幅 - span間マージン - コンテナ左右padding分(概算) */
+		/* ↑ 正確な値は微調整が必要かも */
+		margin-left: 30px; /* Bootstrapデフォルト */
+		float: left; /* 念のため維持 */
+	}
+	/* ↑↑↑ span幅の上書きを追加 ↑↑↑ */
 }
 /* --- ↑↑↑ PC表示時のコンテナ幅調整 ↑↑↑ --- */
-
 
 /* --- スマホ表示 (979px以下) のスタイル --- */
 @media (max-width: 979px) {
