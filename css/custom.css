@@ -74,7 +74,7 @@ pre.numberSource {
 /* --- PC表示 (980px以上) のスタイル --- */
 @media (min-width: 980px) {
 
-	/* 目次 (#TOC) を左側に固定表示 */
+	/* 目次 (#TOC) を左側に固定表示 (幅はBootstrapのspan3に依存) */
 	#TOC {
 		position: -webkit-sticky; /* Safari用 */
 		position: sticky;
@@ -82,44 +82,42 @@ pre.numberSource {
 		max-height: calc(100vh - 40px); /* 高さを画面内に制限 (上下20pxのマージン考慮) */
 		overflow-y: auto; /* 高さを超えたらスクロールバー表示 */
 		padding-top: 0; /* モバイル用のpaddingをリセット */
-		/* --- ↓↓↓ PC表示時の幅を span2 相当に設定 ↓↓↓ --- */
-		float: left; /* Bootstrap 2 のグリッドに合わせる */
-		margin-left: 0; /* 左端に配置 */
-	}
-
-	/* メインコンテンツ (.main-content) の幅を span10 相当に設定 */
-	.main-content {
-		float: left; /* Bootstrap 2 のグリッドに合わせる */
-	}
-
-	/* Bootstrap 2 のブレークポイントごとの幅調整 */
-	/* デフォルトデスクトップ (980px - 1199px): コンテナ幅 940px */
-	@media (min-width: 980px) and (max-width: 1199px) {
-		#TOC {
-			width: 140px; /* span2 の幅 */
-		}
-		.main-content {
-			width: 780px; /* span10 の幅 */
-			margin-left: 20px; /* span間のマージン */
-		}
-	}
-
-	/* ラージデスクトップ (1200px以上): コンテナ幅 1170px */
-	@media (min-width: 1200px) {
-		#TOC {
-			width: 170px; /* span2 の幅 */
-		}
-		.main-content {
-			width: 970px; /* span10 の幅 */
-			margin-left: 30px; /* span間のマージン */
-		}
 	}
 
 	/* ハンバーガーボタンはPCでは非表示 */
 	.toc-toggle-button {
 		display: none !important; /* !importantで確実に非表示 */
 	}
+} /* ← @media (min-width: 980px) の閉じ括弧 */
+
+
+/* --- ↓↓↓ PC表示時のコンテナ幅調整 (980px以上で適用) ↓↓↓ --- */
+/* デフォルトデスクトップ (980px - 1199px): コンテナ幅 1040px */
+@media (min-width: 980px) and (max-width: 1199px) {
+	.container,
+	.navbar-static-top .container,
+	.navbar-fixed-top .container,
+	.navbar-fixed-bottom .container {
+		width: 1040px; /* ★希望の幅に調整 */
+	}
+	/* 【注意】必要に応じてspan3, span9の幅も調整 */
+	/* #TOC { width: /* 計算値 */; } */
+	/* .main-content { width: /* 計算値 */; margin-left: 20px; } */
 }
+
+/* ラージデスクトップ (1200px以上): コンテナ幅をさらに広く */
+@media (min-width: 1200px) {
+	.container,
+	.navbar-static-top .container,
+	.navbar-fixed-top .container,
+	.navbar-fixed-bottom .container {
+			width: 1300px; /* ★希望の幅に調整 */
+	}
+	/* 【注意】必要に応じてspan3, span9の幅も調整 */
+	/* #TOC { width: /* 計算値 */; } */
+	/* .main-content { width: /* 計算値 */; margin-left: 30px; } */
+}
+/* --- ↑↑↑ PC表示時のコンテナ幅調整 ↑↑↑ --- */
 
 
 /* --- スマホ表示 (979px以下) のスタイル --- */
