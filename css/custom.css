@@ -1,0 +1,193 @@
+/* ==========================================================================
+	 基本設定・フォント
+	 ========================================================================== */
+
+/* Google Fonts から Noto Sans JP (Light 300) をインポート */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
+/* body全体のフォント設定 */
+/* テンプレートCSSのフォント指定の先頭に 'Noto Sans JP' を追加し、日本語と半角英数字の表示を改善 */
+body {
+		font-family: 'Noto Sans JP', Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+}
+
+
+/* ==========================================================================
+	 リスト要素の余白調整
+	 ========================================================================== */
+
+/* ネストされたリスト(ol > li > ul)の上部の余白を少し減らす */
+ol > li > ul {
+		margin-top: 0.2em;
+		margin-bottom: 0.8em; /* ネストされたリストの下の余白も調整 */
+}
+
+/* ネストされたリスト項目(ol > li > ul > li)の上部の余白をなくす */
+ol > li > ul > li {
+		margin-top: 0;
+		padding-top: 0;
+}
+
+/* 主要なリスト項目(ol > li)の下の余白を増やす */
+ol > li {
+		margin-bottom: 1em;
+}
+
+
+/* ==========================================================================
+	 コードブロックのインデント・スタイル調整
+	 ========================================================================== */
+
+/* コードブロック内の行の高さを設定し、テキストインデントをリセット */
+pre > code.sourceCode > span {
+		line-height: 1.25;
+		text-indent: 0;
+}
+
+/* 空のspan要素の高さを確保し、インデントをリセット */
+pre > code.sourceCode > span:empty {
+		height: 1.2em;
+		text-indent: 0;
+}
+
+/* 行番号付きコードブロックの左側の余白やボーダーをリセット */
+pre.numberSource {
+		margin-left: 0;
+		padding-left: 0;
+		border-left: none;
+}
+
+
+/* ==========================================================================
+	 目次 (#TOC) とメインコンテンツ (.main-content) のレイアウト
+	 ========================================================================== */
+
+/* --- 目次とコンテンツエリアの基本スタイル (モバイルファーストを意識) --- */
+#TOC {
+	/* モバイルでは最初は非表示または通常フローにするため、特定のスタイルはメディアクエリ内に */
+}
+.main-content {
+	/* モバイルでは通常全幅になる */
+}
+
+
+/* --- PC表示 (980px以上) のスタイル --- */
+@media (min-width: 980px) {
+
+	/* 目次 (#TOC) を左側に固定表示 */
+	#TOC {
+		position: -webkit-sticky; /* Safari用 */
+		position: sticky;
+		top: 20px; /* 画面上部からのオフセット */
+		max-height: calc(100vh - 40px); /* 高さを画面内に制限 (上下20pxのマージン考慮) */
+		overflow-y: auto; /* 高さを超えたらスクロールバー表示 */
+		padding-top: 0; /* モバイル用のpaddingをリセット */
+		/* --- ↓↓↓ PC表示時の幅を span2 相当に設定 ↓↓↓ --- */
+		float: left; /* Bootstrap 2 のグリッドに合わせる */
+		margin-left: 0; /* 左端に配置 */
+	}
+
+	/* メインコンテンツ (.main-content) の幅を span10 相当に設定 */
+	.main-content {
+		float: left; /* Bootstrap 2 のグリッドに合わせる */
+	}
+
+	/* Bootstrap 2 のブレークポイントごとの幅調整 */
+	/* デフォルトデスクトップ (980px - 1199px): コンテナ幅 940px */
+	@media (min-width: 980px) and (max-width: 1199px) {
+		#TOC {
+			width: 140px; /* span2 の幅 */
+		}
+		.main-content {
+			width: 780px; /* span10 の幅 */
+			margin-left: 20px; /* span間のマージン */
+		}
+	}
+
+	/* ラージデスクトップ (1200px以上): コンテナ幅 1170px */
+	@media (min-width: 1200px) {
+		#TOC {
+			width: 170px; /* span2 の幅 */
+		}
+		.main-content {
+			width: 970px; /* span10 の幅 */
+			margin-left: 30px; /* span間のマージン */
+		}
+	}
+
+	/* ハンバーガーボタンはPCでは非表示 */
+	.toc-toggle-button {
+		display: none !important; /* !importantで確実に非表示 */
+	}
+}
+
+
+/* --- スマホ表示 (979px以下) のスタイル --- */
+@media (max-width: 979px) {
+
+	/* ハンバーガーボタンを表示 */
+	.toc-toggle-button {
+		display: block; /* 表示する */
+		position: fixed; /* 画面左上に固定 */
+		top: 10px;
+		left: 10px;
+		z-index: 1050; /* 目次より手前に表示 */
+		padding: 5px 10px;
+		background-color: #f8f8f8; /* 背景色 */
+		border: 1px solid #ccc; /* 境界線 */
+		border-radius: 4px; /* 角丸 */
+		cursor: pointer; /* カーソルをポインターに */
+		font-size: 1.5em; /* アイコンサイズ調整用 */
+		line-height: 1; /* 行の高さを調整 */
+	}
+
+	/* 目次 (#TOC) を画面外に隠し、固定表示の準備 */
+	#TOC {
+		position: fixed; /* 画面に固定 */
+		top: 0;
+		left: 0;
+		width: 250px; /* スライドイン時の幅 (調整可能) */
+		height: 100%; /* 画面の高さ一杯 */
+		background-color: #f5f5f5; /* 背景色 (wellと同じ) */
+		z-index: 1040; /* ボタンより背面、コンテンツより前面 */
+		transform: translateX(-100%); /* 初期状態: 画面左外に隠す */
+		transition: transform 0.3s ease-in-out; /* スライドアニメーション */
+		padding-top: 50px; /* ボタンとの重なりを避けるための上部余白 */
+		border-right: 1px solid #e3e3e3; /* 右境界線 */
+		box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* 影 */
+		max-height: 100vh; /* 高さを画面内に制限 */
+		overflow-y: auto; /* スクロール可能に */
+		/* PC用のsticky指定などを解除 */
+		position: fixed !important; /* position:stickyを確実に上書き */
+		float: none; /* float解除 */
+		margin-left: 0; /* マージン解除 */
+	}
+
+	/* メインコンテンツ (.main-content) の幅とマージンをリセット */
+	.main-content {
+		 width: auto; /* 幅を自動に (ほぼ100%) */
+		 margin-left: 0; /* 左マージン解除 */
+		 float: none; /* float解除 */
+	}
+
+	/* bodyに 'toc-active' クラスが付いた時 (メニュー表示時) */
+	body.toc-active #TOC {
+		transform: translateX(0); /* 目次を画面内にスライドイン */
+	}
+
+	/* (オプション) メニュー表示時に背景を暗くするオーバーレイ */
+	body.toc-active::after {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5); /* 半透明の黒 */
+			z-index: 1039; /* 目次より背面、コンテンツより前面 */
+	}
+}
+
+/* ==========================================================================
+	 (その他のカスタムスタイルがあればここに追加)
+	 ========================================================================== */
