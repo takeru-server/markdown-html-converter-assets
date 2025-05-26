@@ -57,6 +57,19 @@ pre.numberSource {
 		border-left: none;
 }
 
+/* コードブロックの折り返し防止と横スクロール設定 (ここに追加) */
+div.sourceCode,
+pre.sourceCode {
+	white-space: pre !important;
+	overflow-x: auto !important;
+}
+
+/* インラインコードの調整 (必要であればコメントアウトを外す) */
+/*
+code {
+	white-space: nowrap;
+}
+*/
 
 /* ==========================================================================
 	 目次 (#TOC) とメインコンテンツ (.main-content) のレイアウト
@@ -90,8 +103,6 @@ pre.numberSource {
 	}
 } /* ← @media (min-width: 980px) の閉じ括弧 */
 
-
-/* custom.css の修正箇所 */
 
 /* --- ↓↓↓ PC表示時のコンテナ幅調整 (980px以上で適用) ↓↓↓ --- */
 /* デフォルトデスクトップ (980px - 1199px): コンテナ幅 1040px */
