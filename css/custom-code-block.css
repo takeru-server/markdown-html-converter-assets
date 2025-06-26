@@ -51,7 +51,7 @@
 
 /* 隙間を減らす */
 .code-block-container pre.sourceCode {
-    padding: -40px 15px -40px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
+    margin: -40px 15px -40px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
     color: #e0e0e0;
 }
 
