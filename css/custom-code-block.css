@@ -22,7 +22,7 @@
     font-size: 0.9em;
     font-family: sans-serif;
     font-weight: bold;
-} /* text-transformを削除し、JS側のUPPERCASEを尊重 */
+}
 
 /* --- New Copy Button Style --- */
 .new-copy-button {
@@ -36,38 +36,43 @@
     align-items: center;
     justify-content: center;
 }
-
 .new-copy-button:hover {
     background-color: #555555;
 }
-
 .new-copy-button svg {
     width: 16px;
     height: 16px;
     fill: #cccccc;
 }
 
-/* --- Pandoc's pre/code element adjustments --- */
-.code-block-container pre.sourceCode {
-    margin: 0 !important;
-    border: none !important;
-    background-color: transparent !important;
-    padding: 15px !important;
-    color: #e0e0e0; /* デフォルトの文字色 */
-}
-
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 /* ★★★     ここからが今回の重要な修正箇所です     ★★★ */
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
-/* 【修正点1】 Pandocが生成する外側のdivの余白を強制的に削除 */
+/* 【修正点1】 Pandocが生成するdivとpreの余白を強制的に調整 */
 .code-block-container div.sourceCode {
     margin: 0 !important;
 }
+.code-block-container pre.sourceCode {
+    margin: 0 !important;
+    border: none !important;
+    background-color: transparent !important;
+    color: #e0e0e0; /* デフォルトの文字色 */
+
+    /* ↓↓↓ 上下のパディングを調整して隙間を詰める ↓↓↓ */
+    padding: 10px 15px 15px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
+}
+
 
 /* 【修正点2】 見にくいハイライト色の調整 */
+
 /* kwクラス (function, const など) の青色を、明るい水色に変更 */
 .code-block-container code span.kw {
+    color: #82aaff !important;
+}
+
+/* ↓↓↓ cfクラス (for, if など) も同様に明るい水色に変更 ↓↓↓ */
+.code-block-container code span.cf {
     color: #82aaff !important;
 }
 
@@ -76,7 +81,7 @@
     color: #ff9e9e !important;
 }
 
-/* coクラス (コメント) の緑色も少し明るく調整 */
+/* coクラス (コメント) の緑色を少し明るく調整 */
 .code-block-container code span.co {
     color: #9ccc65 !important;
 }
