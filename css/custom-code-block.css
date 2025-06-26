@@ -1,6 +1,6 @@
 /* --- Code Block Container --- */
 .code-block-container {
-    background-color: #2f3133;
+    background-color: #2d2d2d;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 1.5em 0;
@@ -22,8 +22,7 @@
     font-size: 0.9em;
     font-family: sans-serif;
     font-weight: bold;
-    text-transform: uppercase;
-}
+} /* text-transformを削除し、JS側のUPPERCASEを尊重 */
 
 /* --- New Copy Button Style --- */
 .new-copy-button {
@@ -48,42 +47,44 @@
     fill: #cccccc;
 }
 
-/* ★★★★★★★★★★★★★★★★★★★★★★ */
-/* ★★★        修正箇所         ★★★ */
-/* ★★★★★★★★★★★★★★★★★★★★★★ */
-
-/* 見やすい赤 */
-span.er{
-    color: #FED16A !important;
-}
-
-/* 淡い青 */
-span.kw{
-    color: #EBD6FB !important;
-}
-
-.code-block-container div.sourceCode {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-}
 /* --- Pandoc's pre/code element adjustments --- */
 .code-block-container pre.sourceCode {
     margin: 0 !important;
     border: none !important;
-    background-color: transparent !important; /* Pandocの背景色を透明にして、上のコンテナの背景を見せる */
+    background-color: transparent !important;
     padding: 15px !important;
-    
-    /* ↓↓↓【修正点】デフォルトの文字色のみを明るい色に設定する ↓↓↓ */
-    /* これで、pygmentsで色が指定されなかった文字(例: 変数名など)が黒ではなく明るい色になる */
-    color: #e0e0e0;
+    color: #e0e0e0; /* デフォルトの文字色 */
 }
 
-/* 
-   前回のコードにあった以下の部分は、構文ハイライトを破壊するため【削除】しました。
-   .code-block-container pre.sourceCode code span {
-       color: inherit !important;
-   }
-*/
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★     ここからが今回の重要な修正箇所です     ★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+
+/* 【修正点1】 Pandocが生成する外側のdivの余白を強制的に削除 */
+.code-block-container div.sourceCode {
+    margin: 0 !important;
+}
+
+/* 【修正点2】 見にくいハイライト色の調整 */
+/* kwクラス (function, const など) の青色を、明るい水色に変更 */
+.code-block-container code span.kw {
+    color: #82aaff !important;
+}
+
+/* erクラス (エラーや、今回の場合はコメント) の赤色を、明るいピンク色に変更 */
+.code-block-container code span.er {
+    color: #ff9e9e !important;
+}
+
+/* coクラス (コメント) の緑色も少し明るく調整 */
+.code-block-container code span.co {
+    color: #9ccc65 !important;
+}
+
+/* stクラス (文字列) の色を調整 */
+.code-block-container code span.st {
+    color: #c3e88d !important;
+}
 
 
 /* --- Scrollbar Style (Optional) --- */
