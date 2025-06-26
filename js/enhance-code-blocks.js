@@ -1,31 +1,46 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Pandocが出力するすべてのソースコードブロックを取得
     const codeBlocks = document.querySelectorAll('pre.sourceCode');
 
-    codeBlocks.forEach(pre => { // ループの対象を<pre>要素に直接変更
+    codeBlocks.forEach(pre => {
         const code = pre.querySelector('code');
-        // code要素がない、または親がいない場合はスキップ
         if (!code || !pre.parentNode) {
             return;
         }
         const originalParent = pre.parentNode;
 
-        // --- 1. 新しいコンテナとヘッダーを作成 ---
         const container = document.createElement('div');
         container.className = 'code-block-container';
 
         const header = document.createElement('div');
         header.className = 'code-header';
 
-        // --- 2. 言語名を取得して表示 ---
-        const langName = document.createElement('span');
-        langName.className = 'language-name';
-        const langClass = Array.from(code.classList).find(cls => cls.startsWith('language-'));
+        const langNameSpan = document.createElement('span');
+        langNameSpan.className = 'language-name';
 
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        // ★★★           修正箇所：'CODE' を '' に変更           ★★★
+        // ★★★      ここからが新しいロジックです     ★★★
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        langName.textContent = langClass ? langClass.replace('language-', '').toUpperCase() : '';
+
+        // 1. 言語クラスを探す (例: .javascript)
+        const langClass = Array.from(code.classList).find(cls => cls.startsWith('language-'));
+        const lang = langClass ? langClass.replace('language-', '').toUpperCase() : '';
+
+        // 2. title属性を探す (例: title="Sample.js")
+        const title = pre.getAttribute('title') || '';
+
+        // 3. 表示するテキストを組み立てる
+        let headerText = '';
+        if (lang && title) {
+            headerText = `${lang} : ${title}`; // 言語とタイトルの両方がある場合
+        } else {
+            headerText = lang || title; // どちらか片方だけがある場合
+        }
+        langNameSpan.textContent = headerText;
+
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        // ★★★      ここまでのロジックが新しくなりました     ★★★
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
 
         const copyButton = document.createElement('button');
         copyButton.className = 'new-copy-button';
@@ -39,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>`;
         copyButton.innerHTML = originalIcon;
 
-        // --- 4. コピー機能を追加 ---
         copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(code.textContent).then(() => {
                 copyButton.innerHTML = copiedIcon;
@@ -51,16 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // --- 5. 新しい要素をDOMに組み立てる ---
-        header.appendChild(langName);
+        header.appendChild(langNameSpan);
         header.appendChild(copyButton);
         container.appendChild(header);
 
-
-        // 手順1: 元の<pre>要素を、ヘッダーだけが入った新しいコンテナで置き換える
         originalParent.replaceChild(container, pre);
-
-        // 手順2: 置き換えられて行き場を失った<pre>要素を、コンテナの中に追加する
         container.appendChild(pre);
     });
 });
