@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Pandocが出力するすべてのソースコードブロックを取得
-    const codeBlocks = document.querySelectorAll('pre.sourceCode code');
+    const codeBlocks = document.querySelectorAll('pre.sourceCode');
 
-    codeBlocks.forEach(code => {
-        const pre = code.parentElement;
-        // pre要素やその親が存在しない場合はスキップ
-        if (!pre || !pre.parentNode) {
+    codeBlocks.forEach(pre => { // ループの対象を<pre>要素に直接変更
+        const code = pre.querySelector('code');
+        // code要素がない、または親がいない場合はスキップ
+        if (!code || !pre.parentNode) {
             return;
         }
         const originalParent = pre.parentNode;
@@ -51,11 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- 5. 新しい要素をDOMに組み立てる ---
         header.appendChild(langName);
         header.appendChild(copyButton);
-        
         container.appendChild(header);
-        container.appendChild(pre);
 
-        // 元の<pre>要素を、新しいコンテナで置き換える
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        // ★★★  ここが最重要修正ポイントです ★★★
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+        // 手順1: 元の<pre>要素を、ヘッダーだけが入った新しいコンテナで置き換える
         originalParent.replaceChild(container, pre);
+
+        // 手順2: 置き換えられて行き場を失った<pre>要素を、コンテナの中に追加する
+        container.appendChild(pre);
     });
 });
