@@ -18,15 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
         langNameSpan.className = 'language-name';
 
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        // ★★★      ここからが新しいロジックです     ★★★
+        // ★★★            ここからが修正ロジックです            ★★★
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
-        // 1. 言語クラスを探す (例: .javascript)
+        // 1. 言語クラスを <code> タグから探す
         const langClass = Array.from(code.classList).find(cls => cls.startsWith('language-'));
         const lang = langClass ? langClass.replace('language-', '').toUpperCase() : '';
 
-        // 2. title属性を探す (例: title="Sample.js")
-        const title = pre.getAttribute('title') || '';
+        // 2. title属性を <pre> タグの【親要素】から探す
+        const titleHolder = pre.parentElement; // preの親、つまり<div class="sourceCode">
+        const title = titleHolder ? titleHolder.getAttribute('title') : '';
 
         // 3. 表示するテキストを組み立てる
         let headerText = '';
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         langNameSpan.textContent = headerText;
 
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        // ★★★      ここまでのロジックが新しくなりました     ★★★
+        // ★★★            ここまでのロジックを修正しました           ★★★
         // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
 
@@ -65,11 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // 組み立て処理は変更なし
         header.appendChild(langNameSpan);
         header.appendChild(copyButton);
         container.appendChild(header);
 
-        originalParent.replaceChild(container, pre);
-        container.appendChild(pre);
+        // ※注意：ここでは originalParent (div) を container で置き換える
+        originalParent.parentNode.replaceChild(container, originalParent);
+        container.appendChild(originalParent); // 元のdivをコンテナの中に移動
     });
 });
