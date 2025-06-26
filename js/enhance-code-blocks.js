@@ -21,9 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const langName = document.createElement('span');
         langName.className = 'language-name';
         const langClass = Array.from(code.classList).find(cls => cls.startsWith('language-'));
-        langName.textContent = langClass ? langClass.replace('language-', '').toUpperCase() : 'CODE';
-        
-        // --- 3. 新しいコピーボタンを作成 ---
+
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        // ★★★           修正箇所：'CODE' を '' に変更           ★★★
+        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+        langName.textContent = langClass ? langClass.replace('language-', '').toUpperCase() : '';
+
         const copyButton = document.createElement('button');
         copyButton.className = 'new-copy-button';
         const originalIcon = `
@@ -53,9 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         header.appendChild(copyButton);
         container.appendChild(header);
 
-        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-        // ★★★  ここが最重要修正ポイントです ★★★
-        // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
         // 手順1: 元の<pre>要素を、ヘッダーだけが入った新しいコンテナで置き換える
         originalParent.replaceChild(container, pre);
