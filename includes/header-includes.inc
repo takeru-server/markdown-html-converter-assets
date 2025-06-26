@@ -4,3 +4,4 @@
 
 <!-- カスタムCSS (統合版) -->
 <link rel="stylesheet" href="https://takeru-server.github.io/markdown-html-converter-assets/css/custom.css" type="text/css">
+<link rel="stylesheet" href="https://takeru-server.github.io/markdown-html-converter-assets/css/custom-code-block.css" />
