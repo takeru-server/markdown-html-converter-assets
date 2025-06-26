@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     codeBlocks.forEach(code => {
         const pre = code.parentElement;
-        // preの親要素が存在しない場合はスキップ
         if (!pre.parentNode) {
             return;
         }
@@ -53,17 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
         header.appendChild(copyButton);
         
         container.appendChild(header);
-        container.appendChild(pre); // 元の<pre>をコンテナに移動
+        // preをコンテナに移動する前に、元の場所からpreを削除
+        originalParent.removeChild(pre);
+        container.appendChild(pre);
 
-        // ★★★★★ 修正点 ★★★★★
-        // 元の<pre>要素を、新しいコンテナで置き換える
-        originalParent.replaceChild(container, pre);
+        // preがあった場所に、新しいコンテナを挿入
+        originalParent.appendChild(container);
     });
 });
-```*(アイコンの色が見やすいように少し調整しました)*
-
----
-
-### 原因3: その他の外部リソースエラー
-
-**エラー内容:**
