@@ -53,12 +53,12 @@
 /* ★★★★★★★★★★★★★★★★★★★★★★ */
 
 /* 見やすい赤 */
-.er{
+span.er{
     font-color: #FED16A !important;
 }
 
 /* 淡い青 */
-.kw{
+span.kw{
     font-color: #EBD6FB !important;
 }
 
