@@ -65,7 +65,7 @@
      * padding-top の値を小さくすると隙間が詰まり、大きくすると広がります。
      * 見栄えのために8px程度に設定していますが、完全に無くしたい場合は 0px に変更してください。
      */
-    padding: 8px 15px 15px 15px !important; /* 上:8px, 右:15px, 下:15px, 左:15px */
+    padding: 0px 15px 0px 15px !important; /* 上:8px, 右:15px, 下:15px, 左:15px */
 }
 
 
