@@ -54,12 +54,12 @@
 
 /* 見やすい赤 */
 span.er{
-    font-color: #FED16A !important;
+    color: #FED16A !important;
 }
 
 /* 淡い青 */
 span.kw{
-    font-color: #EBD6FB !important;
+    color: #EBD6FB !important;
 }
 
 .code-block-container div.sourceCode {
