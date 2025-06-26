@@ -53,19 +53,18 @@
 /* ★★★★★★★★★★★★★★★★★★★★★★ */
 
 /* 見やすい赤 */
-span .sourceCode span .er{
+.er{
     font-color: #FED16A;
 }
 
 /* 淡い青 */
-span .sourceCode span .kw{
+.kw{
     font-color: #EBD6FB;
 }
 
 
 .code-block-container div.sourceCode {
-    top: 0px;
-    bottom: 0px;
+    height: 0px !important;
 }
 /* --- Pandoc's pre/code element adjustments --- */
 .code-block-container pre.sourceCode {
