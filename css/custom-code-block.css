@@ -1,6 +1,6 @@
 /* --- Code Block Container (The outermost wrapper) --- */
 .code-block-container {
-    background-color: #2d2d2d; /* This is our desired dark background */
+    background-color: #2d2d2d;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 1.5em 0;
@@ -23,57 +23,46 @@
     font-weight: bold;
 }
 
-/* --- Copy Button --- */
-.new-copy-button { /* Styles for the copy button */ }
-.new-copy-button:hover { /* Styles for the copy button on hover */ }
-.new-copy-button svg { /* Styles for the SVG icon in the button */ }
-/* (Copy button styles are correct, so they are collapsed for brevity) */
-.new-copy-button { background-color: transparent; border: none; padding: 5px; cursor: pointer; border-radius: 5px; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; }
-.new-copy-button:hover { background-color: #555555; }
-.new-copy-button svg { width: 16px; height: 16px; fill: #cccccc; }
-
-
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-/* ★★★ ここが全ての隙間と背景の問題を解決する最重要ブロックです ★★★ */
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-
-/* 1. Pandocが作る親divのスタイルを無効化する */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★ ここが唯一にして最大の問題を解決するキーです ★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 .code-block-container div.sourceCode {
-    background: none !important; /* Pandocの白い背景を強制的に消去！ */
-    margin: 0 !important;      /* Pandocの上下1emの余白を強制的に消去！ */
-    padding: 0 !important;     /* 念のためpaddingもリセット */
+    /* 私たちのコンテナの中にあるPandocのdivに限り、 */
+    /* Pandocがデフォルトで設定する上下の余白を強制的に削除！ */
+    margin: 0 !important;
+    /* 念のため背景とボーダーもリセット */
+    background: none !important;
+    border: none !important;
 }
 
-/* 2. preタグの不要な余白もリセットし、必要な余白だけを設定 */
+/* preタグ自体の余白はリセット */
 .code-block-container pre.sourceCode {
     margin: 0 !important;
-    border: none !important;
-    color: #e0e0e0; /* デフォルトの文字色 */
-    
-    /* コード自体の内側余白（上下左右）を設定 */
-    padding: -40px 15px -40px 15px !important;
+    padding: 15px !important; /* コードの内側の余白は維持 */
+    color: #e0e0e0;
 }
 
 
 /* --- 見やすいハイライト色の調整 --- */
-.code-block-container code span.kw, /* const, function... */
-.code-block-container code span.cf  /* for, if... */
-{
+.code-block-container code span.kw,
+.code-block-container code span.cf {
     color: #82aaff !important;
 }
-.code-block-container code span.er { /* エラー、またはJSONでのコメント */
+.code-block-container code span.er {
     color: #ff9e9e !important;
 }
-.code-block-container code span.co { /* コメント */
+.code-block-container code span.co {
     color: #9ccc65 !important;
 }
-.code-block-container code span.st { /* 文字列 */
+.code-block-container code span.st {
     color: #c3e88d !important;
 }
 
-
-/* --- Scrollbar Style (Optional) --- */
-.code-block-container pre.sourceCode::-webkit-scrollbar { height: 10px; }
-.code-block-container pre.sourceCode::-webkit-scrollbar-track { background: #2d2d2d; }
-.code-block-container pre.sourceCode::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
-.code-block-container pre.sourceCode::-webkit-scrollbar-thumb:hover { background: #666; }
+/* --- コピーボタンとスクロールバーのスタイル（変更なし） --- */
+.new-copy-button { background-color: transparent; border: none; padding: 5px; cursor: pointer; border-radius: 5px; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; }
+.new-copy-button:hover { background-color: #555555; }
+.new-copy-button svg { width: 16px; height: 16px; fill: #cccccc; }
+pre.sourceCode::-webkit-scrollbar { height: 10px; }
+pre.sourceCode::-webkit-scrollbar-track { background: #2d2d2d; }
+pre.sourceCode::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
+pre.sourceCode::-webkit-scrollbar-thumb:hover { background: #666; }
