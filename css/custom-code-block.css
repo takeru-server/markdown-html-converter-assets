@@ -1,10 +1,10 @@
 /* --- Code Block Container --- */
 .code-block-container {
-    background-color: #2d2d2d; /* ダークグレーの背景 */
-    border-radius: 8px; /* 角を丸くする */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を付ける */
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 1.5em 0;
-    overflow: hidden; /* 子要素がはみ出さないようにする */
+    overflow: hidden;
 }
 
 /* --- Code Header --- */
@@ -12,8 +12,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3a3a3a; /* ヘッダーの背景色 */
-    padding: 8px 15px;
+    background-color: #3a3a3a;
+    padding: 8px 15px; /* ヘッダーの上下左右の余白 */
     border-bottom: 1px solid #4a4a4a;
 }
 
@@ -22,7 +22,7 @@
     font-size: 0.9em;
     font-family: sans-serif;
     font-weight: bold;
-    text-transform: uppercase; /* 大文字にする */
+    text-transform: uppercase;
 }
 
 /* --- New Copy Button Style --- */
@@ -33,6 +33,9 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.2s ease;
+    display: flex; /* アイコンを中央に配置 */
+    align-items: center;
+    justify-content: center;
 }
 
 .new-copy-button:hover {
@@ -42,18 +45,31 @@
 .new-copy-button svg {
     width: 16px;
     height: 16px;
-    fill: #cccccc; /* アイコンの色 */
+    fill: #cccccc;
 }
+
+/* ★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★        修正箇所         ★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★ */
 
 /* --- Pandoc's pre/code element adjustments --- */
 .code-block-container pre.sourceCode {
-    margin: 0 !important; /* Pandocのスタイルを上書き */
+    margin: 0 !important;
     border: none !important;
-    padding: 15px !important;
+    background-color: transparent !important;
+    padding: 15px !important; /* コードを囲む内側の余白 */
+    /* ↓↓↓【修正1】コード全体の文字色を明るくする ↓↓↓ */
+    color: #e0e0e0; 
+}
+
+/* ↓↓↓【修正1】Pandocのスタイルによっては個別のspanも黒くなるため、それも明るくする ↓↓↓ */
+.code-block-container pre.sourceCode code,
+.code-block-container pre.sourceCode code span {
+    color: inherit !important; /* 親要素の文字色(#e0e0e0)を継承させる */
     background-color: transparent !important;
 }
 
-/* スクロールバーのスタイル（任意） */
+/* --- Scrollbar Style (Optional) --- */
 .code-block-container pre.sourceCode::-webkit-scrollbar {
     height: 10px;
 }
