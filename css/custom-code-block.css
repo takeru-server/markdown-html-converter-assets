@@ -49,45 +49,42 @@
 /* ★★★     ここからが今回の重要な修正箇所です     ★★★ */
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
-/* 【修正点1】 Pandocが生成するdivとpreの余白を強制的に調整 */
+/* Pandocが生成するdivとpreの不要な余白をリセット */
 .code-block-container div.sourceCode {
     margin: 0 !important;
 }
+
 .code-block-container pre.sourceCode {
     margin: 0 !important;
     border: none !important;
     background-color: transparent !important;
-    color: #e0e0e0; /* デフォルトの文字色 */
+    color: #e0e0e0;
 
-    /* ↓↓↓ 上下のパディングを調整して隙間を詰める ↓↓↓ */
-    padding: 10px 15px 15px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
+    /*
+     * ↓↓↓ ヘッダーとコードの間の隙間はここで調整します ↓↓↓
+     * padding-top の値を小さくすると隙間が詰まり、大きくすると広がります。
+     * 見栄えのために8px程度に設定していますが、完全に無くしたい場合は 0px に変更してください。
+     */
+    padding: 8px 15px 15px 15px !important; /* 上:8px, 右:15px, 下:15px, 左:15px */
 }
 
 
-/* 【修正点2】 見にくいハイライト色の調整 */
-
-/* kwクラス (function, const など) の青色を、明るい水色に変更 */
-.code-block-container code span.kw {
+/* 見にくいハイライト色の調整 */
+.code-block-container code span.kw, /* const, function... */
+.code-block-container code span.cf  /* for, if... */
+{
     color: #82aaff !important;
 }
 
-/* ↓↓↓ cfクラス (for, if など) も同様に明るい水色に変更 ↓↓↓ */
-.code-block-container code span.cf {
-    color: #82aaff !important;
-}
-
-/* erクラス (エラーや、今回の場合はコメント) の赤色を、明るいピンク色に変更 */
-.code-block-container code span.er {
+.code-block-container code span.er { /* エラー、または今回のJSONでのコメント */
     color: #ff9e9e !important;
 }
 
-/* coクラス (コメント) の緑色を少し明るく調整 */
-.code-block-container code span.co {
+.code-block-container code span.co { /* コメント */
     color: #9ccc65 !important;
 }
 
-/* stクラス (文字列) の色を調整 */
-.code-block-container code span.st {
+.code-block-container code span.st { /* 文字列 */
     color: #c3e88d !important;
 }
 
