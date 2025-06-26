@@ -49,9 +49,9 @@
 /* ★★★     最終的なレイアウト調整と色の設定     ★★★ */
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
-/* 【原因の根絶】 Pandocのdivが作る上の隙間を削除 */
+/* Pandocのdivが作る上の隙間を削除 */
 .code-block-container div.sourceCode {
-    margin: 0 !important;
+    margin: -40px 15px -40px 15px !important;
 }
 
 /* <pre>タグ自体の不要な余白もリセット */
