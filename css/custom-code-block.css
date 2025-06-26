@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #3a3a3a;
-    padding: 8px 15px; /* ヘッダーの上下左右の余白 */
+    padding: 8px 15px;
     border-bottom: 1px solid #4a4a4a;
 }
 
@@ -33,7 +33,7 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.2s ease;
-    display: flex; /* アイコンを中央に配置 */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -56,18 +56,21 @@
 .code-block-container pre.sourceCode {
     margin: 0 !important;
     border: none !important;
-    background-color: transparent !important;
-    padding: 15px !important; /* コードを囲む内側の余白 */
-    /* ↓↓↓【修正1】コード全体の文字色を明るくする ↓↓↓ */
-    color: #e0e0e0; 
+    background-color: transparent !important; /* Pandocの背景色を透明にして、上のコンテナの背景を見せる */
+    padding: 15px !important;
+    
+    /* ↓↓↓【修正点】デフォルトの文字色のみを明るい色に設定する ↓↓↓ */
+    /* これで、pygmentsで色が指定されなかった文字(例: 変数名など)が黒ではなく明るい色になる */
+    color: #e0e0e0;
 }
 
-/* ↓↓↓【修正1】Pandocのスタイルによっては個別のspanも黒くなるため、それも明るくする ↓↓↓ */
-.code-block-container pre.sourceCode code,
-.code-block-container pre.sourceCode code span {
-    color: inherit !important; /* 親要素の文字色(#e0e0e0)を継承させる */
-    background-color: transparent !important;
-}
+/* 
+   前回のコードにあった以下の部分は、構文ハイライトを破壊するため【削除】しました。
+   .code-block-container pre.sourceCode code span {
+       color: inherit !important;
+   }
+*/
+
 
 /* --- Scrollbar Style (Optional) --- */
 .code-block-container pre.sourceCode::-webkit-scrollbar {
