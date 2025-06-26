@@ -54,17 +54,17 @@
 
 /* 見やすい赤 */
 .er{
-    font-color: #FED16A;
+    font-color: #FED16A !important;
 }
 
 /* 淡い青 */
 .kw{
-    font-color: #EBD6FB;
+    font-color: #EBD6FB !important;
 }
 
 .code-block-container div.sourceCode {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 /* --- Pandoc's pre/code element adjustments --- */
 .code-block-container pre.sourceCode {
