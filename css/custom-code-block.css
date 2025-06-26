@@ -1,6 +1,6 @@
-/* --- Code Block Container --- */
+/* --- Code Block Container (The outermost wrapper) --- */
 .code-block-container {
-    background-color: #2d2d2d;
+    background-color: #2d2d2d; /* This is our desired dark background */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 1.5em 0;
@@ -16,7 +16,6 @@
     padding: 8px 15px;
     border-bottom: 1px solid #4a4a4a;
 }
-
 .language-name {
     color: #cccccc;
     font-size: 0.9em;
@@ -24,42 +23,35 @@
     font-weight: bold;
 }
 
-/* --- New Copy Button Style --- */
-.new-copy-button {
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.new-copy-button:hover {
-    background-color: #555555;
-}
-.new-copy-button svg {
-    width: 16px;
-    height: 16px;
-    fill: #cccccc;
-}
+/* --- Copy Button --- */
+.new-copy-button { /* Styles for the copy button */ }
+.new-copy-button:hover { /* Styles for the copy button on hover */ }
+.new-copy-button svg { /* Styles for the SVG icon in the button */ }
+/* (Copy button styles are correct, so they are collapsed for brevity) */
+.new-copy-button { background-color: transparent; border: none; padding: 5px; cursor: pointer; border-radius: 5px; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; }
+.new-copy-button:hover { background-color: #555555; }
+.new-copy-button svg { width: 16px; height: 16px; fill: #cccccc; }
+
 
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-/* ★★★ ここが隙間を消すための修正 ★★★ */
+/* ★★★ ここが全ての隙間と背景の問題を解決する最重要ブロックです ★★★ */
 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
-/* Pandocが生成するdivとpreのすべての余白を完全にリセット！ */
-.code-block-container div.sourceCode,
+/* 1. Pandocが作る親divのスタイルを無効化する */
+.code-block-container div.sourceCode {
+    background: none !important; /* Pandocの白い背景を強制的に消去！ */
+    margin: 0 !important;      /* Pandocの上下1emの余白を強制的に消去！ */
+    padding: 0 !important;     /* 念のためpaddingもリセット */
+}
+
+/* 2. preタグの不要な余白もリセットし、必要な余白だけを設定 */
 .code-block-container pre.sourceCode {
     margin: 0 !important;
-    padding: 0 !important; /* 一旦、すべての内側余白もリセット */
-}
-
-/* その上で、コード表示エリアに必要なパディングだけを再設定 */
-.code-block-container pre.sourceCode {
-    padding: 10px 15px 15px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
-    color: #e0e0e0;
+    border: none !important;
+    color: #e0e0e0; /* デフォルトの文字色 */
+    
+    /* コード自体の内側余白（上下左右）を設定 */
+    padding: -40px 15px -40px 15px !important;
 }
 
 
@@ -69,31 +61,19 @@
 {
     color: #82aaff !important;
 }
-
-.code-block-container code span.er { /* エラー、または今回のJSONでのコメント */
+.code-block-container code span.er { /* エラー、またはJSONでのコメント */
     color: #ff9e9e !important;
 }
-
 .code-block-container code span.co { /* コメント */
     color: #9ccc65 !important;
 }
-
 .code-block-container code span.st { /* 文字列 */
     color: #c3e88d !important;
 }
 
 
 /* --- Scrollbar Style (Optional) --- */
-.code-block-container pre.sourceCode::-webkit-scrollbar {
-    height: 10px;
-}
-.code-block-container pre.sourceCode::-webkit-scrollbar-track {
-    background: #2d2d2d;
-}
-.code-block-container pre.sourceCode::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 5px;
-}
-.code-block-container pre.sourceCode::-webkit-scrollbar-thumb:hover {
-    background: #666;
-}
+.code-block-container pre.sourceCode::-webkit-scrollbar { height: 10px; }
+.code-block-container pre.sourceCode::-webkit-scrollbar-track { background: #2d2d2d; }
+.code-block-container pre.sourceCode::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
+.code-block-container pre.sourceCode::-webkit-scrollbar-thumb:hover { background: #666; }
