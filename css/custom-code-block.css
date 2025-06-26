@@ -62,9 +62,9 @@
     font-color: #EBD6FB;
 }
 
-
 .code-block-container div.sourceCode {
-    height: 0px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 /* --- Pandoc's pre/code element adjustments --- */
 .code-block-container pre.sourceCode {
