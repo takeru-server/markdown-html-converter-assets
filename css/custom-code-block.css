@@ -1,4 +1,4 @@
-/* --- Code Block Container (The outermost wrapper) --- */
+/* --- Code Block Container --- */
 .code-block-container {
     background-color: #2d2d2d;
     border-radius: 8px;
@@ -16,6 +16,7 @@
     padding: 8px 15px;
     border-bottom: 1px solid #4a4a4a;
 }
+
 .language-name {
     color: #cccccc;
     font-size: 0.9em;
@@ -23,46 +24,85 @@
     font-weight: bold;
 }
 
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-/* ★★★ ここが唯一にして最大の問題を解決するキーです ★★★ */
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-.code-block-container div.sourceCode {
-    /* 私たちのコンテナの中にあるPandocのdivに限り、 */
-    /* Pandocがデフォルトで設定する上下の余白を強制的に削除！ */
-    margin: 0 !important;
-    /* 念のため背景とボーダーもリセット */
-    background: none !important;
-    border: none !important;
+/* --- New Copy Button Style --- */
+.new-copy-button {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new-copy-button:hover {
+    background-color: #555555;
+}
+.new-copy-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #cccccc;
 }
 
-/* preタグ自体の余白はリセット */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★     ここからが今回の重要な修正箇所です     ★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+
+/* 【修正点1】 Pandocが生成するdivとpreの余白を強制的に調整 */
+.code-block-container div.sourceCode {
+    margin: 0 !important;
+}
 .code-block-container pre.sourceCode {
     margin: 0 !important;
-    padding: 15px !important; /* コードの内側の余白は維持 */
-    color: #e0e0e0;
+    border: none !important;
+    background-color: transparent !important;
+    color: #e0e0e0; /* デフォルトの文字色 */
+
+    /* ↓↓↓ 上下のパディングを調整して隙間を詰める ↓↓↓ */
+    padding: 10px 15px 15px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
 }
 
 
-/* --- 見やすいハイライト色の調整 --- */
-.code-block-container code span.kw,
+/* 【修正点2】 見にくいハイライト色の調整 */
+
+/* kwクラス (function, const など) の青色を、明るい水色に変更 */
+.code-block-container code span.kw {
+    color: #82aaff !important;
+}
+
+/* ↓↓↓ cfクラス (for, if など) も同様に明るい水色に変更 ↓↓↓ */
 .code-block-container code span.cf {
     color: #82aaff !important;
 }
+
+/* erクラス (エラーや、今回の場合はコメント) の赤色を、明るいピンク色に変更 */
 .code-block-container code span.er {
     color: #ff9e9e !important;
 }
+
+/* coクラス (コメント) の緑色を少し明るく調整 */
 .code-block-container code span.co {
     color: #9ccc65 !important;
 }
+
+/* stクラス (文字列) の色を調整 */
 .code-block-container code span.st {
     color: #c3e88d !important;
 }
 
-/* --- コピーボタンとスクロールバーのスタイル（変更なし） --- */
-.new-copy-button { background-color: transparent; border: none; padding: 5px; cursor: pointer; border-radius: 5px; transition: background-color 0.2s ease; display: flex; align-items: center; justify-content: center; }
-.new-copy-button:hover { background-color: #555555; }
-.new-copy-button svg { width: 16px; height: 16px; fill: #cccccc; }
-pre.sourceCode::-webkit-scrollbar { height: 10px; }
-pre.sourceCode::-webkit-scrollbar-track { background: #2d2d2d; }
-pre.sourceCode::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
-pre.sourceCode::-webkit-scrollbar-thumb:hover { background: #666; }
+
+/* --- Scrollbar Style (Optional) --- */
+.code-block-container pre.sourceCode::-webkit-scrollbar {
+    height: 10px;
+}
+.code-block-container pre.sourceCode::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+.code-block-container pre.sourceCode::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 5px;
+}
+.code-block-container pre.sourceCode::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
