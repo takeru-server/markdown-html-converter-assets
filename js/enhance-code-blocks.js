@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     codeBlocks.forEach(code => {
         const pre = code.parentElement;
-        if (!pre.parentNode) {
+        // pre要素やその親が存在しない場合はスキップ
+        if (!pre || !pre.parentNode) {
             return;
         }
         const originalParent = pre.parentNode;
@@ -52,11 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
         header.appendChild(copyButton);
         
         container.appendChild(header);
-        // preをコンテナに移動する前に、元の場所からpreを削除
-        originalParent.removeChild(pre);
         container.appendChild(pre);
 
-        // preがあった場所に、新しいコンテナを挿入
-        originalParent.appendChild(container);
+        // 元の<pre>要素を、新しいコンテナで置き換える
+        originalParent.replaceChild(container, pre);
     });
 });
