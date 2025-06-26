@@ -45,31 +45,25 @@
     fill: #cccccc;
 }
 
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-/* ★★★     ここからが今回の重要な修正箇所です     ★★★ */
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* ★★★ ここがお客様の発見を反映させた、隙間を消すための最終修正です ★★★ */
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
-/* Pandocが生成するdivとpreの不要な余白をリセット */
-.code-block-container div.sourceCode {
-    margin: 0 !important;
-}
-
+/* Pandocが生成するdivとpreのすべての余白を完全にリセット！ */
+.code-block-container div.sourceCode,
 .code-block-container pre.sourceCode {
     margin: 0 !important;
-    border: none !important;
-    background-color: transparent !important;
-    color: #e0e0e0;
+    padding: 0 !important; /* 一旦、すべての内側余白もリセット */
+}
 
-    /*
-     * ↓↓↓ ヘッダーとコードの間の隙間はここで調整します ↓↓↓
-     * padding-top の値を小さくすると隙間が詰まり、大きくすると広がります。
-     * 見栄えのために8px程度に設定していますが、完全に無くしたい場合は 0px に変更してください。
-     */
-    padding: -8px 15px -15px 15px !important; /* 上:8px, 右:15px, 下:15px, 左:15px */
+/* その上で、コード表示エリアに必要なパディングだけを再設定 */
+.code-block-container pre.sourceCode {
+    padding: 10px 15px 15px 15px !important; /* 上:10px, 右:15px, 下:15px, 左:15px */
+    color: #e0e0e0;
 }
 
 
-/* 見にくいハイライト色の調整 */
+/* --- 見やすいハイライト色の調整 --- */
 .code-block-container code span.kw, /* const, function... */
 .code-block-container code span.cf  /* for, if... */
 {
